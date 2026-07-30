@@ -63,7 +63,8 @@ one. A fuller tome is always accepted; an emptier one is rejected.
 destroyed** — you get the empty tome back, like a bucket. Set `true` to consume it outright.
 
 **`ENABLE_DRAGON_HEAD_UPGRADE`** — default `true`. Enables upgrading a stage-4 Ice and Fire dragon
-skull to a custom stage 5. Turn it off if you find it too generous.
+skull to a stage 5. Stage 5 skulls only generate in rare underground structures, so this is a
+deterministic route to one. Turn it off if you'd rather keep the search intact.
 
 ---
 

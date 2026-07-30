@@ -83,8 +83,9 @@ glowstone → glowing powder → glowing ingot → glowing gem → glowing gem b
 *Restart the game after changing this.*
 
 ### `ENABLE_DRAGON_HEAD_UPGRADE` — default `true`
-Enables the recipe upgrading a stage-4 Ice and Fire dragon skull to a custom stage 5. Set to `false`
-if you find it too generous.
+Enables the recipe upgrading a stage-4 Ice and Fire dragon skull to a stage 5. Stage 5 skulls already
+exist, but only generate in rare underground structures — this just removes the luck involved. Set to
+`false` if you'd rather keep the search intact.
 
 *Restart the game after changing this.*
 

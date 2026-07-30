@@ -5698,9 +5698,10 @@ public class ModRecipes {
     // glowing gems (corners) and dragon bones (edge-middles), and outputs
     // a "tier 5" dragon skull: same item, same damage value (so the
     // fire/ice/lightning identity carries over), and the input's full NBT
-    // copied over with "Stage" overwritten to 5. There's no such thing as
-    // a stage 5 skull in the base game - this is a custom escalation for
-    // this pack.
+    // copied over with "Stage" overwritten to 5. Stage 5 skulls do exist in
+    // Ice and Fire, but only generate in rare underground structures and
+    // never drop from a dragon - this recipe is a deterministic route to one
+    // rather than a new item.
     // ============================================================
     private static void registerDragonHeadUpgrade(RegistryEvent.Register<IRecipe> event) {
         Item glowingGem = resolveGlowingGem();

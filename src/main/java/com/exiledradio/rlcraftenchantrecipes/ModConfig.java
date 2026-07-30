@@ -97,8 +97,11 @@ public class ModConfig {
                 Configuration.CATEGORY_GENERAL,
                 true,
                 "If true (default), enables the recipe that upgrades a stage-4 iceandfire dragon skull" +
-                        " to a custom stage 5 (glowing gem corners + dragon bone edges)." +
-                        "\nSet to false to disable it entirely if you consider it too cheaty." +
+                        " to a stage 5 (glowing gem corners + dragon bone edges)." +
+                        "\nStage 5 skulls already exist in Ice and Fire, but only generate in rare" +
+                        " underground structures - this recipe just removes the luck involved in" +
+                        " finding one." +
+                        "\nSet to false to disable it if you'd rather keep the search intact." +
                         "\n>> RESTART THE GAME after changing this - recipes only (re)register on launch. <<"
         );
 
