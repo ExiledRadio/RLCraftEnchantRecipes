@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "GIG",
+        "ISI",
+        "GIG"
+    ],
+    "key": {
+        "G": { "item": "xat:glowing_gem" },
+        "I": { "item": "xat:glowing_ingot" },
+        "S": { "item": "iceandfire:sapphire_block" }
+    },
+    "result": { "item": "rlcraftenchantrecipes:glowing_gem_block" }
+}

@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "normal": { "model": "rlcraftenchantrecipes:glowing_gem_block" }
+    }
+}

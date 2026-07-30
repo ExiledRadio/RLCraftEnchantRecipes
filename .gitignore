@@ -1,0 +1,31 @@
+.git/*
+.gradle/*
+.idea/*
+.settings/*
+.metadata/*
+bin/*
+build/*
+run/*
+minecraft/*
+eclipse/*
+.apt_generated/*
+.apt_generated_tests/*
+
+.project
+.classpath
+
+*.iml
+*.ipr
+*.iws
+*.launch
+.factorypath
+
+forge*changelog.txt
+
+# Third-party mod jars. These are only ever compiled against, never bundled
+# into the built mod - and they aren't ours to redistribute. See deps/README.md
+# for where to get them.
+deps/*.jar
+
+# Machine-local editor/tool settings
+.claude/settings.local.json
