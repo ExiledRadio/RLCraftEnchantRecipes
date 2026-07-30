@@ -29,13 +29,11 @@ A few examples:
 
 ---
 
-## Bonus: the stage 5 dragon skull
+## Stage 5 Dragon Skull
 
-One recipe here isn't an enchanted book. Stage 5 dragon skulls don't drop from dragons — they only generate in rare underground structures — and they're a required ingredient for the **Dragon's Eye**, one of the most expensive late-game baubles in the pack. Being blocked on a structure you haven't found is a bad place to be.
+Upgrades a stage 4 dragon skull to a stage 5. Skull in the centre, dragon bone on the edges, glowing gems in the corners. The dragon type carries over.
 
-This recipe upgrades a stage 4 skull into a stage 5: skull in the centre, dragon bone on the edges, glowing gems in the corners.
-
-Only a genuine stage 4 skull is accepted, and the dragon type carries over. Set `ENABLE_DRAGON_HEAD_UPGRADE` to `false` to disable it.
+Set `ENABLE_DRAGON_HEAD_UPGRADE` to `false` to disable it.
 
 ---
 
@@ -104,10 +102,22 @@ Remember that `PACK_MODE`, `DIFFICULTY_MODE` and `ENABLE_DRAGON_HEAD_UPGRADE` on
 
 ---
 
+## Feedback
+
+Feedback and suggestions are welcome, especially on recipe costs and anything that looks mispriced.
+
+- **Bug reports:** the [GitHub issue tracker](https://github.com/ExiledRadio/RLCraftEnchantRecipes/issues)
+- **Discord:** `exiledradio`
+- Or leave a comment on this page
+
+If a recipe isn't showing up, check `PACK_MODE` first and include your log — the `Could not find ...` lines say exactly what was missing.
+
+---
+
 ## Source & license
 
 Source: **https://github.com/ExiledRadio/RLCraftEnchantRecipes**
 
-Licensed **MIT** — fork it, modify it, bundle it in your modpack. Just keep the copyright notice. Bug reports and suggestions welcome on the GitHub issue tracker.
+Licensed **MIT** — fork it, modify it, bundle it in your modpack. Just keep the copyright notice.
 
 *Unofficial addon. Not affiliated with or endorsed by the RLCraft or RLCraft Dregora teams. All referenced items, blocks and enchantments belong to their respective mod authors — this mod bundles none of their code or assets.*
