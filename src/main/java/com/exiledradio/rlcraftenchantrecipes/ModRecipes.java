@@ -5700,8 +5700,8 @@ public class ModRecipes {
     // fire/ice/lightning identity carries over), and the input's full NBT
     // copied over with "Stage" overwritten to 5. Stage 5 skulls do exist in
     // Ice and Fire, but only generate in rare underground structures and
-    // never drop from a dragon - this recipe is a deterministic route to one
-    // rather than a new item.
+    // never drop from a dragon - and they gate the Dragon's Eye bauble, so
+    // this recipe is a deterministic route to one rather than a new item.
     // ============================================================
     private static void registerDragonHeadUpgrade(RegistryEvent.Register<IRecipe> event) {
         Item glowingGem = resolveGlowingGem();
