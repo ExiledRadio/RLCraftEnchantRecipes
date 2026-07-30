@@ -1,18 +1,3 @@
-<!--
-  CurseForge project description (Markdown).
-
-  To use: in the project's Description editor, switch the dropdown from WYSIWYG
-  to Markdown, then paste everything below this comment block.
-
-  IMAGES: upload the eight files from docs/images/ to the project's Images tab
-  first, then replace each IMG_* placeholder below with that image's CurseForge
-  URL. The placeholders are the only things that need changing.
-
-  For the very first submission use curseforge-description-noimages.md instead -
-  the project has to exist before images can be uploaded, so the placeholders
-  would render as broken images during moderation.
--->
-
 # RLCraft Enchantment Recipes
 
 **Stop trading with villagers. Start crafting.**
@@ -21,7 +6,7 @@ You've killed the dragon. You've got a vault full of glowing gems, dragon bone, 
 
 This mod fixes that. Every enchantment gets **one crafting recipe, at its maximum level** — and the ingredients are the things RLCraft actually made you work for.
 
-![Supreme Sharpness V recipe](IMG_SUPREME_SHARPNESS)
+![Supreme Sharpness V recipe](https://media.forgecdn.net/attachments/1831/240/supremesharpnessv-png.png)
 
 *Supreme Sharpness V — glowing gems, two Advanced Sharpness V books, black dragon scales and a Dragon's Eye.*
 
@@ -38,23 +23,23 @@ This mod fixes that. Every enchantment gets **one crafting recipe, at its maximu
 
 Nothing here trivialises the game. These are endgame recipes for endgame materials — the point is to turn a slot-machine grind into something you can plan and work toward.
 
-![Protection IV recipe](IMG_PROTECTION)
+![Protection IV recipe](https://media.forgecdn.net/attachments/1831/245/protectioniv-png.png)
 
 *Protection IV — a full diamond armour set around a book.*
 
-![Unbreaking III recipe](IMG_UNBREAKING)
+![Unbreaking III recipe](https://media.forgecdn.net/attachments/1831/241/unbreakingiii-png.png)
 
 *Unbreaking III — glowing powder, anvils and obsidian.*
 
-![Mending recipe](IMG_MENDING)
+![Mending recipe](https://media.forgecdn.net/attachments/1831/244/mending-png.png)
 
 *Mending — glowing ingots, experience bottles and a full XP Tome.*
 
-![Strengthened Vitality V recipe](IMG_STRENGTHENED_VITALITY)
+![Strengthened Vitality V recipe](https://media.forgecdn.net/attachments/1831/246/strengthenedvitalityv-png.png)
 
 *Strengthened Vitality V — an ender dragon head, Lifesteal and Vampirism books, and a Ring of Regeneration.*
 
-![Subject P.E. V recipe](IMG_SUBJECT_PE)
+![Subject P.E. V recipe](https://media.forgecdn.net/attachments/1831/239/subjectpev-png.png)
 
 *Subject P.E. V — an enchanted medikit, heart containers and a broken heart trinket.*
 
@@ -64,7 +49,7 @@ Nothing here trivialises the game. These are endgame recipes for endgame materia
 
 Upgrades a stage 4 dragon skull to a stage 5. Skull in the centre, dragon bone on the edges, glowing gems in the corners. The dragon type carries over.
 
-![Stage 5 dragon skull upgrade recipe](IMG_DRAGON_SKULL)
+![Stage 5 dragon skull upgrade recipe](https://media.forgecdn.net/attachments/1831/243/dragonskullstagev-png.png)
 
 Set `ENABLE_DRAGON_HEAD_UPGRADE` to `false` to disable it.
 
@@ -89,7 +74,7 @@ Restart the game after changing it — recipes are built at launch.
 
 Config file: `config/rlcraftenchantrecipes.cfg`, or in-game via **Mods → RLCraft Enchantment Recipes → Config**.
 
-![In-game config screen](IMG_CONFIG)
+![In-game config screen](https://media.forgecdn.net/attachments/1831/242/config-png.png)
 
 - **`PACK_MODE`** — `dregora` (default) or `rlcraft`. See above.
 - **`DIFFICULTY_MODE`** — `easy` / `normal` / `hard`. Shifts every recipe's glowing-material cost one step along `glowstone → glowing powder → glowing ingot → glowing gem → glowing gem block`. One setting reprices the entire mod.
