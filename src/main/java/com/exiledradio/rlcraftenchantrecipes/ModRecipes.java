@@ -196,8 +196,8 @@ public class ModRecipes {
             registerAshDestroyerV(event, xpTome);
             registerComboIII(event, xpTome);
             registerPurgingBladeV(event, xpTome);
-            registerAdvancedFireAspectII(event, xpTome);
-            registerSupremeFireAspectII(event, xpTome);
+            registerAdvancedFireAspectII(event);
+            registerSupremeFireAspectII(event);
             registerAtomicDeconstructorII(event, xpTome);
             registerStrengthenedVitalityV(event, xpTome);
             registerDoubleJump(event, xpTome);
@@ -969,9 +969,11 @@ public class ModRecipes {
 
     // ============================================================
     // Advanced Fire Aspect II: glowing ingot corners, blaze rods on all
-    // four edge-middle slots, xp tome in the center.
+    // four edge-middle slots, center consumes a Fire Aspect II book -
+    // same previous-tier-consumption structure as every other Advanced
+    // recipe (Smite, Bane of Arthropods, Flame, etc), not an xp tome.
     // ============================================================
-    private static void registerAdvancedFireAspectII(RegistryEvent.Register<IRecipe> event, Item xpTome) {
+    private static void registerAdvancedFireAspectII(RegistryEvent.Register<IRecipe> event) {
         Item glowingIngot = resolveGlowingIngot();
         if (glowingIngot == null) {
             RLCraftEnchantRecipes.LOGGER.error("Could not find xat:glowing_ingot! Skipping advanced_fire_aspect_ii recipe.");
@@ -989,20 +991,28 @@ public class ModRecipes {
                 "GBG", "BXB", "GBG",
                 'G', glowingIngot,
                 'B', Items.BLAZE_ROD,
-                'X', new XpTomeIngredient(xpTome));
+                'X', new EnchantedBookIngredient(Enchantments.FIRE_ASPECT, 2));
     }
 
     // ============================================================
-    // Supreme Fire Aspect II: glowing gem corners, xp tome in the center,
-    // quark's blaze lantern on all four edge-middle slots. Produces a
-    // treasure-only enchant (somanyenchantments:supremefireaspect) that
-    // can't drop from the enchanting table at all normally.
+    // Supreme Fire Aspect II: glowing gem corners, quark's blaze lantern
+    // on all four edge-middle slots, center consumes an Advanced Fire
+    // Aspect II book instead of a plain Fire Aspect II one - same
+    // previous-tier-consumption structure as every other Supreme recipe.
+    // Produces a treasure-only enchant (somanyenchantments:supremefireaspect)
+    // that can't drop from the enchanting table at all normally.
     // ============================================================
-    private static void registerSupremeFireAspectII(RegistryEvent.Register<IRecipe> event, Item xpTome) {
+    private static void registerSupremeFireAspectII(RegistryEvent.Register<IRecipe> event) {
         Item glowingGem = resolveGlowingGem();
         Item blazeLantern = PackCompat.findItem("quark", "blaze_lantern");
         if (glowingGem == null || blazeLantern == null) {
             RLCraftEnchantRecipes.LOGGER.error("Could not find xat:glowing_gem or quark:blaze_lantern! Skipping supreme_fire_aspect_ii recipe.");
+            return;
+        }
+
+        Enchantment advancedFireAspect = PackCompat.findEnchantment("somanyenchantments", "advancedfireaspect");
+        if (advancedFireAspect == null) {
+            RLCraftEnchantRecipes.LOGGER.error("Could not find somanyenchantments:advancedfireaspect! Skipping supreme_fire_aspect_ii recipe.");
             return;
         }
 
@@ -1017,7 +1027,7 @@ public class ModRecipes {
                 "GQG", "QXQ", "GQG",
                 'G', glowingGem,
                 'Q', blazeLantern,
-                'X', new XpTomeIngredient(xpTome));
+                'X', new EnchantedBookIngredient(advancedFireAspect, advancedFireAspect.getMaxLevel()));
     }
 
     // ============================================================
