@@ -84,7 +84,11 @@ me and I'll adjust it. Same for enchantments I've missed.
 
 - [ ] Confirm the CurseForge page loads in a private/incognito window (if it doesn't, it isn't
       public yet)
-- [ ] Confirm 1.0.1 is published, not just approved
+- [ ] Decide on 1.0.0 vs 1.0.1. 1.0.0 is published and works fine. If 1.0.1 is approved and only
+      needs the publish click, publish it first — the Fire Aspect tier fix is in it, and there's
+      no reason for the first wave of users to land on the version with the inconsistent recipes.
+      If 1.0.1 is still in moderation, post anyway; the mod page always serves the newest
+      published file, so it'll pick up 1.0.1 automatically once you publish it later.
 - [ ] Flair the post — check what similar mod posts on the sub use
 - [ ] Post when the sub is active, generally US evening
 - [ ] Stay around for the first couple of hours. Early comment replies drive visibility more than
