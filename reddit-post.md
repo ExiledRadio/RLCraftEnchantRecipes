@@ -1,27 +1,26 @@
-# r/RLCraft launch post — final (text post with inline images)
-
-## How to post
-
-1. New post → **Text** (not Images & Video)
-2. Use the **Fancy Pants** editor, not Markdown Mode — you need the image button
-3. Paste each text block below in order, and use the image icon in the toolbar to insert the
-   named screenshot at each `[IMAGE: ...]` marker
-4. Delete the markers themselves — they're instructions, not post content
-5. Screenshots are in `docs/images/`
-
-If pasting from this file mangles the formatting, switch to Markdown Mode, paste the text, then
-switch back to Fancy Pants — the markdown converts, and then you can insert images.
-
----
+# r/RLCraft launch post
 
 ## Title
 
-> I got tired of rerolling librarians, so I made a mod that adds crafting recipes for max-level
-> enchantment books
+I got tired of rerolling librarians, so I made a mod that adds crafting recipes for max-level enchantment books
 
 ---
 
-## Post body
+## How to build the post
+
+Reddit's composer drops uploaded images into a gallery strip at the top, and "move to body"
+inserts them wherever the cursor happens to be. Fighting that is a waste of time.
+
+Instead, **build the post in order**: paste a text block, add its image, paste the next block.
+Each image lands at the end of what you've written so far, which is where you want it. Never
+paste the whole post and then try to insert images into the middle.
+
+Images are in `docs/images/`. Work on desktop, in one sitting — Reddit's draft saving is
+unreliable.
+
+---
+
+## STEP 1 — paste this
 
 Every RLCraft run hits the same wall for me. You've done the hard part — killed the dragon, geared up, got a base — and then progression turns into standing at a lectern breaking and replacing it a hundred times, waiting for a librarian to offer Protection IV. It's not difficult, it's just tedious, and it's the part of the game I've quit runs over.
 
@@ -29,15 +28,19 @@ So I built a mod that turns those enchantments into crafting recipes instead.
 
 **Every enchantment gets one recipe, always at max level.** Over a hundred of them, vanilla and modded — including the Advanced and Supreme tiers and the Runes.
 
-`[IMAGE: SupremeSharpnessV.png]`
+## STEP 2 — add image: `SupremeSharpnessV.png`
+
+## STEP 3 — paste this
 
 That's Supreme Sharpness V — two Advanced Sharpness books, black dragon scales, and a Dragon's Eye in the middle.
 
 The recipes are themed to what the enchantment actually does, and they're priced as endgame projects rather than shortcuts. Fire Protection wants blaze rods. Viper wants a hydra heart and a wither skull. Subject P.E. wants heart containers and an enchanted medikit.
 
-`[IMAGE: ProtectionIV.png]`
+## STEP 4 — add image: `ProtectionIV.png`
 
-`[IMAGE: SubjectPEV.png]`
+## STEP 5 — add image: `SubjectPEV.png`
+
+## STEP 6 — paste this
 
 The idea is that all the rare drops sitting unused in your chests become a path to a specific enchantment you actually want, instead of hoping RNG eventually offers it.
 
@@ -47,11 +50,15 @@ The idea is that all the rare drops sitting unused in your chests become a path 
 * Works on **both base RLCraft and Dregora**. There's a `PACK_MODE` config option you set to match your pack. This one matters: the two packs ship different versions of SoManyEnchantments and it renamed most of its enchantments between them, so if `PACK_MODE` is wrong most recipes won't show up
 * `DIFFICULTY_MODE` (easy/normal/hard) shifts every recipe's cost up or down a tier, so you can rebalance the whole mod with one setting if you think I've priced things badly
 
-`[IMAGE: Config.png]`
+## STEP 7 — add image: `Config.png`
+
+## STEP 8 — paste this
 
 It also adds a stage 4 → stage 5 dragon skull upgrade, since stage 5 only spawns in rare underground structures and gates the Dragon's Eye.
 
-`[IMAGE: DragonSkullStageV.png]`
+## STEP 9 — add image: `DragonSkullStageV.png`
+
+## STEP 10 — paste this (last block)
 
 **CurseForge:** https://www.curseforge.com/minecraft/mc-mods/rlcraft-enchantment-recipes
 
@@ -61,7 +68,7 @@ I balanced these against my own playthrough, which is a sample size of one — s
 
 ---
 
-## First comment (post immediately after)
+## First comment — post immediately after the post goes live
 
 Couple of things worth saying up front:
 
@@ -71,13 +78,22 @@ Couple of things worth saying up front:
 
 ---
 
+## If the editor keeps fighting you
+
+Drop the inline images entirely. Make it a **gallery post** — title plus the five images in the
+order above — and paste STEPS 1, 3, 6, 8 and 10 as one block in the **first comment**.
+
+Slightly worse, because the writeup is one click away, but plenty of mod releases are posted that
+way and it takes two minutes instead of twenty. Not worth losing an evening over.
+
+---
+
 ## Before posting
 
 - [ ] CurseForge page loads in a private/incognito window
 - [ ] Decide 1.0.0 vs 1.0.1 — if 1.0.1 is approved and only needs the publish click, publish it
-      first. The link doesn't change either way, and the page always serves the newest published
-      file
+      first. The link doesn't change either way
 - [ ] Flair the post — check what similar mod posts on the sub use
 - [ ] Post when the sub is active, generally US evening
-- [ ] Stay around the first couple of hours. Early comment replies drive visibility more than
-      anything else, and rule 1 means you only get one shot
+- [ ] Stay around the first couple of hours. Early replies drive visibility, and rule 1 means you
+      only get one shot
