@@ -227,12 +227,12 @@ public class ModRecipes {
             registerInnerBerserkIV(event, xpTome);
             if (glowingPowder != null) {
                 registerJaggedRakeV(event, xpTome, glowingPowder);
-                registerSmelting(event, xpTome, glowingPowder);
+                registerSmelting(event, glowingPowder);
                 registerHoming(event, glowingPowder, xpTome);
                 registerComplexityIII(event, glowingPowder);
                 registerSturdyIII(event, glowingPowder);
                 registerShockingV(event, glowingPowder);
-                registerMagnetic(event, glowingPowder, xpTome);
+                registerMagnetic(event, glowingPowder);
                 registerCurses(event, glowingPowder);
             }
             registerLevitatorII(event, xpTome);
@@ -252,7 +252,7 @@ public class ModRecipes {
             registerRuneRevivalII(event, xpTome);
             registerSolsBlessingV(event, xpTome);
             if (glowingPowder != null) {
-                registerSmelterI(event, xpTome, glowingPowder);
+                registerSmelterI(event, glowingPowder);
             }
             registerAdvancedSharpnessV(event, xpTome);
         }
@@ -2445,7 +2445,7 @@ public class ModRecipes {
     // furnace on the top/bottom middle, and a betternether Netherrack
     // Furnace on the left/right middle.
     // ============================================================
-    private static void registerSmelterI(RegistryEvent.Register<IRecipe> event, Item xpTome, Item glowingPowder) {
+    private static void registerSmelterI(RegistryEvent.Register<IRecipe> event, Item glowingPowder) {
         Item netherrackFurnace = PackCompat.findItem("betternether", "netherrack_furnace");
         if (netherrackFurnace == null) {
             RLCraftEnchantRecipes.LOGGER.error("Could not find betternether:netherrack_furnace! Skipping smelter_i recipe.");
@@ -2466,7 +2466,7 @@ public class ModRecipes {
                 'G', glowingPowder,
                 'F', furnace,
                 'N', netherrackFurnace,
-                'X', new XpTomeIngredient(xpTome));
+                'X', Items.BOOK);
     }
 
     // ============================================================
@@ -4965,7 +4965,7 @@ public class ModRecipes {
     // Fishing Made Better Magnetic Hook on all four edge-middle
     // slots.
     // ============================================================
-    private static void registerMagnetic(RegistryEvent.Register<IRecipe> event, Item glowingPowder, Item xpTome) {
+    private static void registerMagnetic(RegistryEvent.Register<IRecipe> event, Item glowingPowder) {
         Item magneticHook = PackCompat.findItem("fishingmadebetter", "hook_magnetic");
         if (magneticHook == null) {
             RLCraftEnchantRecipes.LOGGER.error("Could not find fishingmadebetter:hook_magnetic! Skipping magnetic recipe.");
@@ -4983,7 +4983,7 @@ public class ModRecipes {
                 "GHG", "HXH", "GHG",
                 'G', glowingPowder,
                 'H', magneticHook,
-                'X', new XpTomeIngredient(xpTome));
+                'X', Items.BOOK);
     }
 
     // ============================================================
@@ -5187,7 +5187,7 @@ public class ModRecipes {
     // furnaces on the sides, Better Nether netherrack furnaces on
     // top/bottom.
     // ============================================================
-    private static void registerSmelting(RegistryEvent.Register<IRecipe> event, Item xpTome, Item glowingPowder) {
+    private static void registerSmelting(RegistryEvent.Register<IRecipe> event, Item glowingPowder) {
         net.minecraft.block.Block netherrackFurnaceBlock = net.minecraft.block.Block.REGISTRY.getObject(new ResourceLocation("betternether", "netherrack_furnace"));
         if (netherrackFurnaceBlock == null) {
             RLCraftEnchantRecipes.LOGGER.error("Could not find betternether:netherrack_furnace! Skipping smelting recipe.");
@@ -5208,7 +5208,7 @@ public class ModRecipes {
                 'G', glowingPowder,
                 'N', netherrackFurnace,
                 'F', furnace,
-                'X', new XpTomeIngredient(xpTome));
+                'X', Items.BOOK);
     }
 
     // ============================================================
@@ -5806,12 +5806,29 @@ public class ModRecipes {
                                                     String name, ItemStack output,
                                                     String r1, String r2, String r3,
                                                     Object... ingredients) {
+        if (isRecipeDisabled(name)) {
+            RLCraftEnchantRecipes.LOGGER.info("Recipe '" + name + "' matches an entry in DISABLED_RECIPES - skipping.");
+            return;
+        }
+
         ConfigurableTomeRecipe recipe = new ConfigurableTomeRecipe(output, r1, r2, r3, ingredients);
         recipe.setRegistryName(new ResourceLocation(RLCraftEnchantRecipes.MODID, name + "_configurable"));
         event.getRegistry().register(recipe);
         TOME_RECIPES.add(recipe);
 
         RLCraftEnchantRecipes.LOGGER.info("Registered tome recipe: " + name);
+    }
+
+    // "*" is a wildcard matched against the whole recipe ID (converted to a regex via \Q...\E
+    // literal-quoting so the rest of the pattern isn't accidentally interpreted as regex syntax).
+    // An entry with no "*" must equal the ID exactly.
+    private static boolean isRecipeDisabled(String recipeId) {
+        for (String pattern : ModConfig.DISABLED_RECIPES) {
+            if (pattern == null || pattern.isEmpty()) continue;
+            String regex = "\\Q" + pattern.replace("*", "\\E.*\\Q") + "\\E";
+            if (recipeId.matches(regex)) return true;
+        }
+        return false;
     }
 
     private static ItemStack createBook(Enchantment ench, int level) {

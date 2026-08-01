@@ -29,3 +29,6 @@ deps/*.jar
 
 # Machine-local editor/tool settings
 .claude/settings.local.json
+
+# Personal scratch notes, not part of the project
+todolist.txt

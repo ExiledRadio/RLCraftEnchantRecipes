@@ -25,6 +25,7 @@ public class ModConfig {
     public static String DIFFICULTY_MODE = "normal";
     public static boolean ENABLE_DRAGON_HEAD_UPGRADE = true;
     public static String PACK_MODE = "dregora";
+    public static String[] DISABLED_RECIPES = new String[0];
 
     public static void init(File configFile) {
         if (config == null) {
@@ -126,6 +127,28 @@ public class ModConfig {
             PACK_MODE = "dregora";
         }
 
+        // Same one-time-registration reasoning as DIFFICULTY_MODE above. Every recipe this mod
+        // registers (curses and the plain vanilla-Mending tome recipe included, since both route
+        // through the same shared registerConfigurableRecipe helper) is checked against this list
+        // before it registers - a match skips that recipe entirely, as if it never existed.
+        DISABLED_RECIPES = config.getStringList(
+                "DISABLED_RECIPES",
+                Configuration.CATEGORY_GENERAL,
+                new String[0],
+                "Recipe IDs to disable entirely - list one per line. Find the exact ID for a recipe" +
+                        " in the game log at startup (\"Registered tome recipe: <id>\") or in this mod's" +
+                        " ModRecipes.java source." +
+                        "\n\"*\" works as a wildcard anywhere in an entry, matched against the whole ID:" +
+                        " \"supreme_*\" disables every Supreme-tier recipe, \"*_v\" disables every recipe" +
+                        " ending in _v, \"*sharpness*\" disables every recipe with \"sharpness\" anywhere" +
+                        " in its ID. An entry with no \"*\" must match an ID exactly." +
+                        "\nEmpty (default) disables nothing." +
+                        "\nDoes NOT cover ENABLE_DRAGON_HEAD_UPGRADE (its own separate toggle above) or" +
+                        " the Glowing Gem Block's crafting recipe (a plain vanilla-format JSON recipe," +
+                        " not registered through this list)." +
+                        "\n>> RESTART THE GAME after changing this - recipes only (re)register on launch. <<"
+        );
+
         if (config.hasChanged()) {
             config.save();
         }
@@ -134,7 +157,8 @@ public class ModConfig {
                 + ", CONSUME_XP_BOOK_ON_CRAFT = " + CONSUME_XP_BOOK_ON_CRAFT
                 + ", DIFFICULTY_MODE = " + DIFFICULTY_MODE
                 + ", ENABLE_DRAGON_HEAD_UPGRADE = " + ENABLE_DRAGON_HEAD_UPGRADE
-                + ", PACK_MODE = " + PACK_MODE);
+                + ", PACK_MODE = " + PACK_MODE
+                + ", DISABLED_RECIPES = " + java.util.Arrays.toString(DISABLED_RECIPES));
     }
 
     public static List<IConfigElement> getConfigElements() {
@@ -149,12 +173,14 @@ public class ModConfig {
             String previousDifficultyMode = DIFFICULTY_MODE;
             boolean previousDragonHeadUpgrade = ENABLE_DRAGON_HEAD_UPGRADE;
             String previousPackMode = PACK_MODE;
+            String[] previousDisabledRecipes = DISABLED_RECIPES;
 
             loadConfig();
 
             boolean recipeAffectingChange = !previousDifficultyMode.equals(DIFFICULTY_MODE)
                     || previousDragonHeadUpgrade != ENABLE_DRAGON_HEAD_UPGRADE
-                    || !previousPackMode.equals(PACK_MODE);
+                    || !previousPackMode.equals(PACK_MODE)
+                    || !java.util.Arrays.equals(previousDisabledRecipes, DISABLED_RECIPES);
             if (recipeAffectingChange) {
                 notifyRestartRequired();
             }
@@ -170,7 +196,8 @@ public class ModConfig {
         if (player == null) return;
         player.sendMessage(new TextComponentString(
                 TextFormatting.GOLD + "[RLCraft Enchantment Recipes] " + TextFormatting.YELLOW
-                        + "DIFFICULTY_MODE / ENABLE_DRAGON_HEAD_UPGRADE / PACK_MODE changed - "
+                        + "A recipe-affecting setting changed (DIFFICULTY_MODE / ENABLE_DRAGON_HEAD_UPGRADE"
+                        + " / PACK_MODE / DISABLED_RECIPES) - "
                         + TextFormatting.WHITE + "restart the game" + TextFormatting.YELLOW
                         + " for recipes to update. Nothing changes until then."));
     }
