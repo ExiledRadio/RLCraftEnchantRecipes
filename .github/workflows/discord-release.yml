@@ -1,0 +1,66 @@
+name: Announce release on Discord
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  announce:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post release to Discord
+        env:
+          # Release fields go through env, never inlined into run: —
+          # a ${{ }} expression pasted into a shell script is an injection vector.
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
+          ROLE_ID: ${{ vars.DISCORD_RELEASE_ROLE_ID }}
+          REL_NAME: ${{ github.event.release.name }}
+          REL_TAG: ${{ github.event.release.tag_name }}
+          REL_URL: ${{ github.event.release.html_url }}
+          REL_BODY: ${{ github.event.release.body }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+
+          TITLE="${REL_NAME:-$REL_TAG}"
+
+          # Discord caps embed descriptions at 4096 chars. Trim, then drop any
+          # partial multi-byte character the cut may have left behind.
+          BODY=$(printf '%s' "$REL_BODY" | head -c 3500 | iconv -c -f utf-8 -t utf-8)
+          if [ ${#REL_BODY} -gt 3500 ]; then
+            BODY="${BODY}"$'\n\n'"… [read the full changelog](${REL_URL})"
+          fi
+          if [ -z "${BODY//[[:space:]]/}" ]; then
+            BODY="See the release page for details."
+          fi
+
+          if [ -n "${ROLE_ID}" ]; then
+            CONTENT="<@&${ROLE_ID}> **${TITLE}** is out!"
+          else
+            CONTENT="**${TITLE}** is out!"
+          fi
+
+          jq -n \
+            --arg content "$CONTENT" \
+            --arg role    "$ROLE_ID" \
+            --arg title   "$TITLE" \
+            --arg url     "$REL_URL" \
+            --arg desc    "$BODY" \
+            --arg footer  "$REPO • $REL_TAG" \
+            '{
+              content: $content,
+              allowed_mentions: { parse: [], roles: (if $role == "" then [] else [$role] end) },
+              embeds: [{
+                title: $title,
+                url: $url,
+                description: $desc,
+                color: 5763719,
+                footer: { text: $footer }
+              }]
+            }' > payload.json
+
+          curl -sS --fail-with-body \
+            -X POST \
+            -H "Content-Type: application/json" \
+            -d @payload.json \
+            "$DISCORD_WEBHOOK"
