@@ -14,7 +14,7 @@ jobs:
           # a ${{ }} expression pasted into a shell script is an injection vector.
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
           ROLE_ID: ${{ vars.DISCORD_RELEASE_ROLE_ID }}
-          REL_NAME: ${{ github.event.release.name }}
+          MOD_NAME: ${{ vars.DISCORD_MOD_NAME }}
           REL_TAG: ${{ github.event.release.tag_name }}
           REL_URL: ${{ github.event.release.html_url }}
           REL_BODY: ${{ github.event.release.body }}
@@ -22,7 +22,11 @@ jobs:
         run: |
           set -euo pipefail
 
-          TITLE="${REL_NAME:-$REL_TAG}"
+          # Display name comes from the DISCORD_MOD_NAME repo variable so the
+          # announcement reads the same no matter how a release is titled.
+          # Falls back to the bare repo name if the variable isn't set.
+          NAME="${MOD_NAME:-${REPO#*/}}"
+          TITLE="${NAME} ${REL_TAG}"
 
           # Discord caps embed descriptions at 4096 chars. Trim, then drop any
           # partial multi-byte character the cut may have left behind.
